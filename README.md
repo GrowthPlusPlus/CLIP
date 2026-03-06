@@ -1,1 +1,1 @@
-# CLIP
+# 🚀 Haenaem CLIP AI Server
