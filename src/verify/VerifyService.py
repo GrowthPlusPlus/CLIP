@@ -9,7 +9,8 @@ from PIL import Image
 
 from typing import Optional
 from src.verify.prompts import CATEGORY_PROMPTS
-from src.verify.prompts import (map_title_to_categories, get_negative_prompts)
+from src.verify.prompts import (map_title_to_categories, get_negative_prompts, is_yolo_supported, get_expected_objects)
+from src.verify.YoloVerifier import YoloVerifier  # YOLO 검사 py파일
 
 from src.verify.VerifyStatus import VerifyStatus
 
@@ -27,6 +28,8 @@ class ClipVerifier:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model, self.preprocess = clip.load(model_name, device=self.device)
         self.model.eval()
+        # YOLO 객체 검출기이다.
+        self.yolo_verifier = YoloVerifier()
 
     """
     이미지와 프롬프트의 점수를 계산하는 함수이다.
@@ -101,6 +104,27 @@ class ClipVerifier:
         best_generic_prompt, best_generic_score = max(generic_scores.items(), key=lambda kv: kv[1]) 
         best_negative_prompt, best_negative_score = max(negative_scores.items(),key=lambda kv: kv[1])
 
+        # 기본적으로 YOLO 검사는 수행하지 않는다.
+        yolo_checked = False
+        yolo_pass = True
+        detected_objects = []
+        expected_objects = set()
+
+        # 현재 카테고리가 YOLO를 지원하는 경우에만 수행한다.
+        if is_yolo_supported(categories):
+            yolo_checked = True
+
+            # YOLO 검사를 수행하고 검출된 객체들을 저장한다.
+            detected_objects = self.yolo_verifier.detect_objects(image)
+            # 해당 카테고리에 기대되는 객체 목록을 가져온다.
+            expected_objects = get_expected_objects(categories)
+
+            # 기대 객체가 하나라도 검출되면 통과한다. 없다면 FALSE
+            yolo_pass = any(
+                obj in expected_objects
+                for obj in detected_objects
+            )
+
         # 그냥 사람/실내/야외 사진같은 generic + margin보다 카테고리와의 유사도가 낮은 경우 실패한다.
         if best_score < best_generic_score + MARGIN:
             passed = VerifyStatus.FAIL
@@ -111,7 +135,10 @@ class ClipVerifier:
 
         # 이미지와의 유사도가 높은 경우이다.
         elif best_score >= PASS_THRESHOLD:  
-            passed = VerifyStatus.PASS
+                if yolo_checked and not yolo_pass:  # 이미지와 유사도는 높지만 YOLO 검사는 통과하지 못한 경우이다.
+                    passed = VerifyStatus.REVIEW
+                else:  # 두 검사 모두 통과한 경우이다.
+                    passed = VerifyStatus.PASS
 
         # 이미지의 유사도가 애매하여 리뷰가 필요한 경우이다.
         elif best_score >= REVIEW_THRESHOLD:

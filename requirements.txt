@@ -14,3 +14,5 @@ tqdm
 
 packaging
 python-multipart
+
+ultralytics

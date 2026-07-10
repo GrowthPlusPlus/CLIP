@@ -2,6 +2,7 @@
 
 import re
 from typing import List
+from typing import Set
 
 """
 텍스트를 정규화 하기 위한 함수이다.
@@ -44,6 +45,25 @@ def get_negative_prompts(categories: List[str]) -> List[str]:
         prompts.extend(NEGATIVE_PROMPTS[c])  # 카테고리 내부에 있는 프롬프트를 하나씩 저장한다.
 
     return list(dict.fromkeys(prompts))  # 중복을 제거하여 반환한다.
+
+"""
+YOLO를 사용할 카테고리인지 확인한다. 카테고리에 해당한다면 YOLO 검사를 수행한다.
+"""
+def is_yolo_supported(categories: List[str]) -> bool:
+    return any(category in YOLO_SUPPORTED for category in categories)
+
+"""
+카테고리별 기대 객체를 반환한다. 
+ex) 카테고리가 study, coding이라면 해당 카테고리에 존재하는 모든 객체 이름을 반환한다.
+"""
+def get_expected_objects(categories: List[str]) -> Set[str]:
+    expected = set()
+
+    for category in categories:
+        if category in EXPECTED_OBJECTS:
+            expected.update(EXPECTED_OBJECTS[category])
+
+    return expected
 
 """
 프롬프트 파일의 목적은 한국어로 들어오는 챌린지 제목을, CLIP이 잘 비교할 수 있는 ‘시각적 영어 문장 세트’로 변환하는 역할이다.
@@ -615,4 +635,54 @@ NEGATIVE_PROMPTS = {
         "a person drawing",
         "a person playing the piano"
     ]
+}
+
+
+"""
+YOLO가 보조 검증을 수행할 카테고리이다.
+해당 카테고리에 포함되는 챌린지 제목의 경우, YOLO 검사에서 최소 하나의 객체가 검출 되어야만 통과할 수 있다.
+"""
+YOLO_SUPPORTED = {
+    "study",
+    "coding",
+    "reading",
+    "food",
+    "cooking",
+}
+
+"""
+카테고리별 YOLO가 검출해야 하는 객체이다. COCO 데이터셋에서 지원하는 객체만 사용한다. (총 80개)
+객체가 하나 이상 검출되면 해당 카테고리와 관련 있는 사진으로 판단한다.
+"""
+EXPECTED_OBJECTS = {
+    "study": [
+        "book", "laptop", "keyboard",
+        "mouse", "cell phone", "backpack",
+        "chair", "dining table",
+    ],
+
+    "coding": [
+        "laptop", "keyboard", "mouse",
+        "cell phone", "chair", "tv",
+        "dining table",
+    ],
+
+    "reading": [
+        "book", "chair", "couch",
+        "bed",
+    ],
+
+    "food": [
+        "banana", "apple", "orange",
+        "broccoli", "carrot", "pizza",
+        "cake", "sandwich", "bowl",
+        "cup", "bottle", "dining table",
+    ],
+
+    "cooking": [
+        "oven", "microwave", "sink",
+        "refrigerator", "knife", "fork",
+        "spoon", "bowl", "cup",
+        "dining table",
+    ],
 }
