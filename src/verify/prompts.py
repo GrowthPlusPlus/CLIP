@@ -153,16 +153,20 @@ CATEGORY_PROMPTS = {
         "a library study table",
         "a person holding a book",
         "a book with bookmarks",
-        "a person reading indoors",
         "a person reading outdoors",
         "an ebook displayed on a tablet",
         "a person reading an ebook",
         "books neatly arranged on a shelf",
         "a reading corner with books",
-        "a person focused on reading",
         "an open novel on a wooden desk",
         "a person turning the pages of a book",
-        "a quiet reading environment"
+        "a person holding an open book"
+        "a person reading a printed book"
+        "an open book with visible pages"
+        "a close-up of an open book"
+        "a book opened on a desk"
+        "pages of a book clearly visible"
+        "a person turning the pages of a book"
     ],
 
     "sports": [
@@ -439,7 +443,8 @@ CATEGORY_KEYWORDS = {
 
     "food": [
         "식단", "건강식", "식사",
-        "아침", "점심", "저녁",
+        "아침 식사", "점심 식사", "저녁 식사",
+        "아침밥", "점심밥", "저녁밥"
         "샐러드", "닭가슴살", "단백질",
         "과일", "채소", "도시락",
         "현미", "고구마", "계란",
@@ -545,7 +550,15 @@ NEGATIVE_PROMPTS = {
         "a person cleaning a room",
         "a person drawing",
         "a person playing the piano",
-        "a person watering plants"
+        "a person watering plants",
+        "a bowl of food",
+        "a plate of food",
+        "a healthy meal",
+        "a restaurant meal",
+        "a poke bowl",
+        "a salad",
+        "fresh vegetables",
+        "raw salmon in a bowl"
     ],
 
     "sports": [
