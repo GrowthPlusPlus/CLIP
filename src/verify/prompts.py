@@ -160,12 +160,12 @@ CATEGORY_PROMPTS = {
         "a reading corner with books",
         "an open novel on a wooden desk",
         "a person turning the pages of a book",
-        "a person holding an open book"
-        "a person reading a printed book"
-        "an open book with visible pages"
-        "a close-up of an open book"
-        "a book opened on a desk"
-        "pages of a book clearly visible"
+        "a person holding an open book",
+        "a person reading a printed book",
+        "an open book with visible pages",
+        "a close-up of an open book",
+        "a book opened on a desk",
+        "pages of a book clearly visible",
         "a person turning the pages of a book"
     ],
 
