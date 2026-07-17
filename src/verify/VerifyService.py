@@ -18,6 +18,7 @@ from src.verify.VerifyStatus import VerifyStatus
 PASS_THRESHOLD = 0.20  # 카테고리 점수가 이 값 이상이어야 통과한다.
 REVIEW_THRESHOLD = 0.18  # 카테고리 점수가 이 값 이하면 실패한다.
 MARGIN = 0.04  # 카테고리 점수가 generic 점수보다 얼마나 더 커야 하는지의 차이이다.
+READING_MARGIN = 0.02  # 독서는 다른 카테고리에 비해 책 사진만 올렸을 때 실패하는 경우가 많으므로 margin값을 낮춘다.
 
 """
 텍스트와 이미지를 받아서 유사도를 검사해주는 클래스이다.
@@ -125,8 +126,11 @@ class ClipVerifier:
                 for obj in detected_objects
             )
 
+        # 카테고리가 독서라면 margin값을 변경한다.
+        margin = READING_MARGIN if "reading" in categories else MARGIN
+
         # 그냥 사람/실내/야외 사진같은 generic + margin보다 카테고리와의 유사도가 낮은 경우 실패한다.
-        if best_score < best_generic_score + MARGIN:
+        if best_score < best_generic_score + margin:
             passed = VerifyStatus.FAIL
 
         # 네거티브 프롬프트가 더 높은 경우에도 실패한다.
@@ -157,7 +161,7 @@ class ClipVerifier:
             "genericScore": best_generic_score,
             "passed": passed.name,
             "threshold": PASS_THRESHOLD,
-            "margin": MARGIN,
+            "margin": margin,
             "promptScores": category_scores,  # 카테고리 프롬프트 별 점수 전체이다.
             "genericPromptScores": generic_scores,  # generic 프롬프트 별 점수 전체이다.
         }
