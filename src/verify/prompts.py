@@ -143,30 +143,32 @@ CATEGORY_PROMPTS = {
     ],
 
     "reading": [
+        # 사람 + 책
         "a person reading a book",
         "a person reading a novel",
-        "a person reading at a desk",
-        "a person reading in a library",
-        "an open book on a desk",
-        "a bookshelf filled with books",
-        "a stack of books on a table",
-        "a library study table",
         "a person holding a book",
-        "a book with bookmarks",
-        "a person reading outdoors",
-        "an ebook displayed on a tablet",
-        "a person reading an ebook",
-        "books neatly arranged on a shelf",
-        "a reading corner with books",
-        "an open novel on a wooden desk",
-        "a person turning the pages of a book",
         "a person holding an open book",
+        "a person turning the pages of a book",
         "a person reading a printed book",
+        "a person reading an ebook",
+
+        # 책 자체 (인증 사진에서 가장 흔함)
+        "an open book",
         "an open book with visible pages",
         "a close-up of an open book",
         "a book opened on a desk",
-        "pages of a book clearly visible",
-        "a person turning the pages of a book"
+        "a book lying on a table",
+        "a photo of an open book",
+        "a close-up photo of a book",
+        "a book with visible text",
+        "a book with bookmarks",
+
+        # 실제 인증 구도
+        "a book being read",
+        "a book in someone's hands",
+        "a book opened for reading",
+        "a novel on a desk",
+        "a book on a cafe table"
     ],
 
     "sports": [
