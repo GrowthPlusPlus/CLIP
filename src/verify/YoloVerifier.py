@@ -14,7 +14,7 @@ class YoloVerifier:
     서버 시작 시 YOLO 모델을 한 번만 로드한다.
     """
     def __init__(self,
-                 model_name: str = "yolov8n.pt",  # YOLO 모델이다.
+                 model_name: str = "yolov8s.pt",  # YOLO 모델이다.
                  device: Optional[str] = None):
 
         self.device = device or (  # GPU가 있으면 cude, 없으면 cpu를 사용한다.
@@ -48,5 +48,18 @@ class YoloVerifier:
                 class_name = self.model.names[class_id]
                 # set에 객체 이름을 저장한다.
                 detected_objects.add(class_name)
+
+        results = self.model.predict(
+            source=image,
+            device=self.device,
+            verbose=False
+        )
+
+        # YOLO가 찾은 객체를 사각형과 확률로 사진에 그려주는 코드로 현재는 사용하지 않음
+        # for i, result in enumerate(results):
+        #     plotted = result.plot()  # 박스가 그려진 이미지 (numpy 배열)
+
+        #     from PIL import Image
+        #     Image.fromarray(plotted).save(f"yolo_result_{i}.jpg")
 
         return sorted(detected_objects)  # 검출된 객체의 순서를 일정하게 한다.

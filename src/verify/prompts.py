@@ -113,10 +113,21 @@ CATEGORY_PROMPTS = {
         "a quiet study room",
         "a student studying in a library",
         "a library study desk",
-        "a student taking notes during class",
         "a laptop used for studying",
         "a computer displaying lecture slides",
-        "a classroom study environment"
+        "an exam preparation textbook",
+        "a study textbook",
+        "a workbook",
+        "an English workbook",
+        "a textbook opened for studying",
+        "a textbook with highlighted text",
+        "a workbook with solved problems",
+        "a study desk with textbooks",
+        "a desk prepared for studying",
+        "an open exam preparation book",
+        "study materials with a cup of coffee",
+        "a textbook and a cup of coffee",
+        "a study desk with coffee"
     ],
 
     "coding": [
@@ -355,28 +366,33 @@ CATEGORY_PROMPTS = {
         "a gardening scene outdoors"
     ],
 
-    # 매핑 실패 시 fallback으로 키워드 매칭이 실패했을 때, 서버가 죽지 않도록 해준다.
+    # 태그와 관련없는 일반적인 상황들을 묘사하기 위한 카테고리이다.
     "generic": [
-        "a photo of a person",  # 그냥 사람이 찍힌 사진
-        "a photo taken indoors",  # 실내 사진
-        "a photo taken outdoors",  # 야외 사진
-        "a photo of an object",  # 사람없이 사물만 있는 사진
-        "a close-up photo",
-        "a picture of everyday life",
-        "a casual snapshot",
-        "a normal daily scene",
-        "an indoor environment",
-        "an outdoor environment",
-        "a room inside a house",
-        "a public place",
-        "a desk with everyday objects",
-        "a random object",
-        "a household item",
-        "a natural outdoor scene",
+        "a person standing",
+        "a person sitting",
+        "a person posing for a photo",
+        "a selfie",
+
+        "a living room",
+        "a bedroom",
+        "a hallway",
+        "a bathroom",
+
+        "a household object",
+        "a decorative object",
+        "a piece of furniture",
+
         "a city street",
-        "a simple photograph",
-        "a real world scene",
-        "an ordinary photograph"
+        "a building exterior",
+        "a parked vehicle",
+        "a landscape",
+        "a tree",
+
+        "an ordinary indoor scene",
+        "an ordinary outdoor scene",
+        "a casual everyday scene",
+        "a random daily life photo",
+        "an unrelated everyday photo"
     ],
 }
 """
@@ -409,7 +425,8 @@ CATEGORY_KEYWORDS = {
         "편입", "편준", "공무원",
         "임용", "자격증", "정처기",
         "정보처리기사", "토익", "토플",
-        "오픽", "jlpt", "hsk"
+        "오픽", "jlpt", "hsk",
+        "입시"
     ],
 
     "coding": [
