@@ -317,7 +317,12 @@ CATEGORY_PROMPTS = {
         "a person drawing with a pencil",
         "an open sketchbook with drawings",
         "art supplies on a desk",
-        "a creative art workspace"
+        "a creative art workspace",
+        "a finished illustration",
+        "a completed drawing",
+        "a digital illustration",
+        "an anime-style illustration",
+        "a character illustration"
     ],
 
     "music": [
@@ -368,11 +373,6 @@ CATEGORY_PROMPTS = {
 
     # 태그와 관련없는 일반적인 상황들을 묘사하기 위한 카테고리이다.
     "generic": [
-        "a person standing",
-        "a person sitting",
-        "a person posing for a photo",
-        "a selfie",
-
         "a living room",
         "a bedroom",
         "a hallway",
