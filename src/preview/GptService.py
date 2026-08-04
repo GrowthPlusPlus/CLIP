@@ -35,7 +35,7 @@ gardening: 식물 키우기, 원예
 def gpt_classify_title(title: str) -> str:
     response = client.chat.completions.create(  # openai api를 호출하는 부분이다.
         model="gpt-5-mini",
-        temperature=0,  # 생성 다양성을 조절한다. (0 ~ 2에서 0으로 갈수록 일관성있게 답변한다)
+        temperature=1,  # 생성 다양성을 조절한다. (0 ~ 2에서 0으로 갈수록 일관성있게 답변한다)
         messages=[
             {
                 "role": "system",  
