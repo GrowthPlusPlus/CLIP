@@ -16,3 +16,5 @@ packaging
 python-multipart
 
 ultralytics
+
+openai

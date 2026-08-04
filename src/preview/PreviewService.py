@@ -3,6 +3,7 @@
 from typing import Dict, Any
 
 from src.verify.VerifyService import map_title_to_categories
+from src.preview.GptService import gpt_classify_title
 
 """
 챌린지 제목을 받아서 사진 자동 검증 가능 여부를 판단하는 서비스이다.
@@ -11,6 +12,13 @@ class ChallengePreviewService:
     def preview(self, title: str) -> Dict[str, Any]:
         # 제목과 유사한 카테고리를 검색한다.
         categories = map_title_to_categories(title) 
+
+        # 검색 실패 시 GPT 사용하여 카테고리에 속할 수 있는지 검사한다.
+        if not categories:
+            category = gpt_classify_title(title)
+            
+            if category != "unsupported":
+                categories = [category]
 
         # 검색된 카테고리가 하나라도 있다면 true를 저장한다. 즉 검색한 카테고리가 없다면 사진 검증이 불가능하다.
         auto_verifiable = len(categories) > 0

@@ -23,6 +23,9 @@ jobs:
             git fetch origin
             git reset --hard origin/main
 
+            # .env 생성
+            echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
+
             # CLIP 컨테이너만 재빌드 및 재배포
             cd ~/hanaem
             docker compose build --no-cache clip
