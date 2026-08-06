@@ -17,7 +17,7 @@ from src.verify.VerifyStatus import VerifyStatus
 # 유사도 통과 정책 값이다.
 PASS_THRESHOLD = 0.20  # 카테고리 점수가 이 값 이상이어야 통과한다.
 REVIEW_THRESHOLD = 0.18  # 카테고리 점수가 이 값 이하면 실패한다.
-MARGIN = 0.02  # 카테고리 점수가 generic 점수보다 얼마나 더 커야 하는지의 차이이다.
+MARGIN = 0.00  # 카테고리 점수가 generic 점수보다 얼마나 더 커야 하는지의 차이이다.
 
 """
 텍스트와 이미지를 받아서 유사도를 검사해주는 클래스이다.
