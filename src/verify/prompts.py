@@ -436,7 +436,7 @@ CATEGORY_KEYWORDS = {
         "정보처리기사", "토익", "토플",
         "오픽", "jlpt", "hsk",
         "입시", "Toeic", "adsp"
-        "기사"
+        "기사", "귀트영"
     ],
 
     "coding": [
@@ -530,7 +530,7 @@ CATEGORY_KEYWORDS = {
         "색소폰", "악기", "연주",
         "노래", "보컬", "합창",
         "작곡", "편곡", "음악",
-        "우쿨렐레", "베이스", "연습"
+        "우쿨렐레", "베이스"
     ],
 
     "gardening": [
@@ -568,7 +568,8 @@ NEGATIVE_PROMPTS = {
         "a person cleaning a room",
         "a person drawing",
         "a person playing the guitar",
-        "a person watering plants"
+        "a person watering plants",
+        "a person riding an escalator"
     ],
 
     "coding": [
