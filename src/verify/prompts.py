@@ -225,7 +225,12 @@ CATEGORY_PROMPTS = {
         "a high protein meal",
         "a healthy diet meal",
         "a colorful healthy dish",
-        "a well prepared meal"
+        "a well prepared meal",
+        "a person drinking water",
+        "a person drinking from a water bottle",
+        "a person drinking from a glass",
+        "a glass filled with water",
+        "a bottle filled with drinking water"
     ],
 
     "cooking": [
@@ -477,7 +482,8 @@ CATEGORY_KEYWORDS = {
         "과일", "채소", "도시락",
         "현미", "고구마", "계란",
         "음식", "간식", "칼로리",
-        "식단관리", "영양", "건강식단"
+        "식단관리", "영양", "건강식단",
+        "물", "맛집"
     ],
 
     "cooking": [
